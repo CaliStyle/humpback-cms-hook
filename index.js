@@ -5,7 +5,7 @@ module.exports = function (sails) {
  		defaults: {
       routes: {
         'get /admin/cms': {
-          view: 'admin/cms'
+          view: 'admin/index'
         }
       }
     },
@@ -15,6 +15,10 @@ module.exports = function (sails) {
       if (!_.isObject(sails.config.humpback)){
       	sails.config.humpback = { };
       }
+      if(!_.isObject(sails.config.humpback.barnacles)){
+        sails.config.humpback.barnacles = { };
+      }
+      sails.config.humpback.barnacles.cms = true;
      
     },
 		initialize: function (next) {
