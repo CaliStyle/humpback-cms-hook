@@ -4,7 +4,7 @@ module.exports = function (sails) {
  	return { 
  		defaults: {
       routes: {
-        'get /admin/cms': {
+        'get /admin/cms*': {
           view: 'admin/index'
         }
       }
