@@ -1,6 +1,6 @@
 {
   "name": "humpback-cms-hook",
-  "version": "0.11.6",
+  "version": "0.11.7",
   "description": "Humpback CMS Hook",
   "main": "index.js",
   "sails": {
