@@ -21,13 +21,21 @@ var ConfigOverrides = require('../config/env/testing');
           var Client = require('../assets/js/dependencies/sails.io.js');
           global.io = new Client(require('socket.io-client'));
           io.sails.url = 'http://localhost:1337/';
-          
+          var id = new Buffer('get:/hello').toString('base64');
+
           request(sails.hooks.http.app)
-          .get('/admin/gui')
+          .post('/route')
+          .send({
+            id: id,
+            uri: '/hello',
+            slug: 'world',
+            title: 'World',
+            description: 'World',
+            keywords: [{'text': 'world'}]
+          })
           .end(function(err) {
             done(err, sails);
           });
-          //done(null, sails);
            
       });
     });

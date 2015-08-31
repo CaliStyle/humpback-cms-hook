@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!--
+        /*****************************************************
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+          __     __    __    ____   __  ____ _    _ __    ____
+         //\\   //\\   ||    ====  //\\ ==== \\  // ||    ||==
+        ||     //==\\  ||     ||   \\_   ||   \\//  ||    ||==
+         \\// //    \\ ||=== ====  \\//  ||    ||   ||=== ||==
+
+        Authored By: 
+        Scott Wyatt @ScottBWyatt 
+        Built On: Humpback
+
+        @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+        *****************************************************/
+    -->
+
+    <base href="/">
+    <title><%= sails.config.meta.title || '' %></title>
+
+    <!-- Viewport mobile tag for sensible mobile support -->
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="<%= sails.config.meta.keywords || '' %>">
+    <meta name="description" content="<%= sails.config.meta.description || ''%>">
+    <meta property="og:locale" content="<%= sails.config.i18n.defaultLocale || 'en' %>" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="<%= sails.config.meta.title %>" />
+    <meta property="og:description" content="<%= sails.config.meta.description || '' %>" />
+    <meta property="og:url" content="<%= sails.config.meta.url || '' %>" />
+    <meta property="og:image" content="<%= sails.config.meta.image || '' %>">
+    <meta property="og:site_name" content="<%= sails.config.humpback.name || 'Humpback' %>" />
+  </head>
+  
+  <body>
+    Hello World
+  </body>
+</html>
