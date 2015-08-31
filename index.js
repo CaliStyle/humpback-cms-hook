@@ -2,11 +2,35 @@
 
 function _getRouteID(req){
 
-  var method = req.route.method;
-  var uri = req._parsedOriginalUrl.path;
+  var method = req.method.toLowerCase();
+  var uri = req.url;
   var id = new Buffer(method + ':' + uri).toString('base64');
 
   return id;
+}
+
+function _isFilename(url){
+  var fileParts = url.split('.');
+  if(fileParts > 0){
+    return true;
+  }
+  
+  return false;
+  
+}
+
+function _isRest(url){
+  //See if this is a rest call.
+  if(!sails.config.blueprints.prefix || sails.config.blueprints.prefix === ''){
+    return false;
+  }
+
+  if(url.indexOf(sails.config.blueprints.prefix) > -1){
+    return true;
+  }
+  
+  return false;
+
 }
 
 module.exports = function (sails) {
@@ -96,7 +120,18 @@ module.exports = function (sails) {
       before: {
         'get /*': [
           function cms (req, res, next){
-            
+            //If this request is a socket request then we can igonore it.
+            if(req.isSocket){
+              return next();
+            }
+            //If this request is for a non html file, we can ignore it.
+            if(_isFilename(req.url)){
+              return next();
+            }
+            if(_isRest(req.url)){
+              return next();
+            }
+
             //console.log(req);
 
             var routeID = _getRouteID(req);
