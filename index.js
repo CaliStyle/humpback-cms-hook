@@ -10,8 +10,9 @@ function _getRouteID(req){
 }
 
 function _isFilename(url){
+  //console.log(url);
   var fileParts = url.split('.');
-  if(fileParts > 0){
+  if(fileParts.length > 1){
     return true;
   }
   
@@ -20,11 +21,12 @@ function _isFilename(url){
 }
 
 function _isRest(url){
-  //See if this is a rest call.
+  //console.log(url);
+  //See if we can tell if this is a rest call.
   if(!sails.config.blueprints.prefix || sails.config.blueprints.prefix === ''){
     return false;
   }
-
+  //If has an index of the prefix then we can think it's a rest call
   if(url.indexOf(sails.config.blueprints.prefix) > -1){
     return true;
   }
