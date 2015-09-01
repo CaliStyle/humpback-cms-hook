@@ -1,0 +1,8 @@
+
+/**
+ * Category Controller
+ */
+
+module.exports = {
+
+}
