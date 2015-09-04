@@ -23,6 +23,6 @@ _.merge(exports, {
    *	next(); 
    * }
    */
-
+   rules: []
   
 });

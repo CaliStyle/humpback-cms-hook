@@ -23,7 +23,9 @@ _.merge(exports, {
    * bar: function(values, next){ 
    *  next(); 
    * }
-   */  
+   */ 
+
+   rules: [] 
 
   
 });

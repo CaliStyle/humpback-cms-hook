@@ -42,7 +42,8 @@ module.exports = {
   		},
   		routes: {
   			collection: 'Route',
-            via: 'category'
+        via: 'categories',
+        dominant: true
   		}
   	}
 
