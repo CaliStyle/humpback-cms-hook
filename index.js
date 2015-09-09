@@ -135,7 +135,6 @@ module.exports = function (sails) {
             }
 
             //console.log(req);
-
             var routeID = _getRouteID(req);
             
             //console.log(routeID);
@@ -145,7 +144,7 @@ module.exports = function (sails) {
             Route.findOne(routeID)
             .exec(function(err, foundRoute){
               if(err || !foundRoute){
-                sails.log.info(routeID, 'does not yet have Metadata, use the CMS to add it, setting to default');                
+                sails.log.info(routeID, req.method.toLowerCase(), req.url, 'does not yet have Metadata, use the CMS to add it, setting to default');                
                 sails.config.meta.title = sails.config.humpback.name;
                 sails.config.meta.description = '';
                 sails.config.meta.image = '';

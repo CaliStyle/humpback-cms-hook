@@ -10,7 +10,7 @@ describe('Category::', function () {
       agent
         .post('/api/category')
         .send({
-            name: 'All',
+            name: 'all',
         })
         .expect(201, function (err, res) {
 

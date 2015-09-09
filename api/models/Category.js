@@ -22,23 +22,25 @@ module.exports = {
     reserved: true,
   	
   	permissions: {
-	    'registered': {
-			'create': {action: false,	relation: false},
-			'read' 	: {action: true,	relation: false},
-    		'update': {action: false,	relation: false},
-    		'delete': {action: false,	relation: false}		
-    	},
-		'public': {
-			'create': {action: false,	relation: false},
-			'read' 	: {action: true,	relation: false},
-    		'update': {action: false,	relation: false},
-    		'delete': {action: false,	relation: false}
-		}
+      'registered': {
+        'create': {action: false,	relation: false},
+        'read' 	: {action: true,	relation: false},
+        'update': {action: false,	relation: false},
+        'delete': {action: false,	relation: false}		
+      },
+      'public': {
+        'create': {action: false,	relation: false},
+        'read' 	: {action: true,	relation: false},
+        'update': {action: false,	relation: false},
+        'delete': {action: false,	relation: false}
+      }
   	},
 
   	attributes: {
   		name: {
-  			type: 'string'
+  			type: 'string',
+        required: true,
+        unique: true
   		},
   		routes: {
   			collection: 'Route',

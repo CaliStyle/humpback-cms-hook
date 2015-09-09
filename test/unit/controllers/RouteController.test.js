@@ -7,9 +7,9 @@ describe('RouteController::', function () {
 
   describe('http request', function () {
     
-    var routes, route, route2;
+    var routes, route, route2, category;
 
-    it ('Should Complete the GET Test', function (done) {
+    it ('should Complete the GET Test', function (done) {
 
       request(sails.hooks.http.app)
         .get('/hello')
@@ -19,7 +19,7 @@ describe('RouteController::', function () {
         });
     });
 
-    it ('Should Complete the GET Test and return 404', function (done) {
+    it ('should Complete the GET Test and return 404', function (done) {
 
       request(sails.hooks.http.app)
         .get('/hello.jpg')
@@ -162,6 +162,50 @@ describe('RouteController::', function () {
           done();
 
         });
+    });
+
+    it ('should create category "hello"', function (done){
+     
+      var agent = request.agent(sails.hooks.http.app);
+      agent
+        .post('/api/category')
+        .send({
+            name: 'hello',
+        })
+        .expect(201, function (err, res) {
+
+          if (err) {
+            return done(err);
+          }
+          //console.log(res.body);
+          category = res.body;
+          //console.log(route2);
+          //assert.equal(res.body.slug, 'hello-world-1');
+          done();
+
+        });
+    });
+
+    it ('should add route to category', function (done){
+
+      //console.log('/api/category/' + category.id + '/routes/' + route.id);
+
+      var agent = request.agent(sails.hooks.http.app);
+        
+        agent
+          .post('/api/category/' + category.id + '/routes/' + route.id)
+          .send({})
+          .expect(200, function (err, res) {
+
+            if (err) {
+              return done(err);
+            }
+            //route2 = res.body;
+            console.log(res.body);
+            
+            done();
+
+          });
     });
   });
 });
