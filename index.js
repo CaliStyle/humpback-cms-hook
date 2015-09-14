@@ -39,8 +39,13 @@ module.exports = function (sails) {
  	return { 
  		defaults: {
       routes: {
-        'get /admin/cms*': {
-          view: 'admin/index'
+        'get /admin/cms': {
+          view: 'admin/index',
+          defaultPermissions: ['admin']
+        },
+        'get /admin/cms/*': {
+          view: 'admin/index',
+          defaultPermissions: ['admin']
         }
       }
     },

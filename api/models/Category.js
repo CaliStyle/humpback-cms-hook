@@ -47,6 +47,17 @@ module.exports = {
         via: 'categories',
         dominant: true
   		}
-  	}
+  	},
 
+    beforeValidate: [
+      function makeLowercase (values, next) {
+        
+        sails.log.silly('Category.beforeValidate.makeLowercase');
+        if(values.name){
+            values.name  = values.name.toLowerCase();
+        }
+
+        next(null, values);
+      }
+    ]
 }
