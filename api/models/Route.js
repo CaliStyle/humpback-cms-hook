@@ -92,6 +92,21 @@ _.merge(exports, {
          */
         publishAt: {
             type: 'datetime'
+        },
+
+        /*
+         * Route is in trash.
+         */
+        trash: {
+            type: 'boolean',
+            defaultsTo: false,
+        },
+
+        /*
+         * When Route was last moved to Trash
+         */
+        trashAt: {
+            type: 'datetime'
         }
 
 	},
@@ -137,6 +152,13 @@ _.merge(exports, {
                 }
                 next(err, values);
             });
+        },
+        function handleTrash(values, next){
+            sails.log.silly('Route.beforeUpdate.handleTrash');
+            if(values.trash){
+               values.trashAt = new Date();
+            }
+            next();
         }
     ]
   
