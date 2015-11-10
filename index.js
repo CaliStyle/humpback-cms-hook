@@ -133,6 +133,7 @@ module.exports = function (sails) {
       before: {
         'get /*': [
           function cms (req, res, next){
+            res.locals.meta = {};
             //If this request is a socket request then we can igonore it and let the route policy handle it.
             if(req.isSocket){
               return next();
@@ -144,8 +145,6 @@ module.exports = function (sails) {
             if(_isRest(req.url)){
               return next();
             }
-
-            res.locals.meta = {};
 
             var RouteService = sails.services.routeservice;
             RouteService.findTargetRoute(req)
@@ -196,7 +195,7 @@ module.exports = function (sails) {
                 var options = {
                   verb: req.method,
                   route: req.route,
-                    user: req.user
+                  user: req.user
                 };
 
                 RouteService.findUserRouteRoles(options)
@@ -206,7 +205,7 @@ module.exports = function (sails) {
                       if(req.route.redirect){
                         return res.redirect(req.route.redirect);
                       }else{
-                        return res.forbidden({ error: RouteService.getErrorMessage(options), redirect: req.route.redirect });
+                        return res.forbidden({ error: RouteService.getErrorMessage(options));
                       }
                     }
                     next();
