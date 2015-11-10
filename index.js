@@ -205,7 +205,7 @@ module.exports = function (sails) {
                       if(req.route.redirect){
                         return res.redirect(req.route.redirect);
                       }else{
-                        return res.forbidden({ error: RouteService.getErrorMessage(options));
+                        return res.forbidden({ error: RouteService.getErrorMessage(options)});
                       }
                     }
                     next();
