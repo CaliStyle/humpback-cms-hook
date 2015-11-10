@@ -147,6 +147,7 @@ module.exports = function (sails) {
             }
 
             var RouteService = sails.services.routeservice;
+
             RouteService.findTargetRoute(req)
               .then(function (route){
                 sails.log.silly(route);
@@ -205,7 +206,7 @@ module.exports = function (sails) {
                       if(req.route.redirect){
                         return res.redirect(req.route.redirect);
                       }else{
-                        return res.badRequest({ error: RouteService.getErrorMessage(options)});
+                        return res.forbidden({ error: RouteService.getErrorMessage(options)},'403');
                       }
                     }
                     next();
