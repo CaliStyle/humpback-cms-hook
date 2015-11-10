@@ -29,7 +29,8 @@ var ConfigOverrides = require('../config/env/testing');
           .post('/api/route')
           .send({
             id: id,
-            uri: '/hello',
+            address: 'GET /hello',
+            //uri: '/hello',
             slug: 'world',
             title: 'World',
             description: 'World',

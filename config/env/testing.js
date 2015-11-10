@@ -31,7 +31,7 @@ module.exports = {
   },
   
   policies: {
-    UserController: { create: true },
+    UserController: { create: true, register: true },
     RouteController: { create: true, update: true },
     CategoryController: { create: true, update: true }
   }

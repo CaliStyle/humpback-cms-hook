@@ -158,7 +158,7 @@ describe('RouteController::', function () {
           }
           route2 = res.body;
           //console.log(route2);
-          assert.equal(res.body.slug, 'hello-world-2');
+          assert.equal(res.body.slug, 'hello-world-3');
           done();
 
         });
@@ -186,7 +186,7 @@ describe('RouteController::', function () {
         });
     });
 
-    it ('should add route to category', function (done){
+    it ('should not add route to category', function (done){
 
       //console.log('/api/category/' + category.id + '/routes/' + route.id);
 
@@ -195,7 +195,7 @@ describe('RouteController::', function () {
         agent
           .post('/api/category/' + category.id + '/routes/' + route.id)
           .send({})
-          .expect(200, function (err, res) {
+          .expect(403, function (err, res) {
 
             if (err) {
               return done(err);

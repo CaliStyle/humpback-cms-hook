@@ -42,6 +42,13 @@ _.merge(exports, {
         },
 
         /**
+         * Title of this Route
+         */
+        byline: {
+            type: 'string'
+        },
+
+        /**
          * Url friendly Title of this Route
          */
         slug: {
@@ -87,6 +94,14 @@ _.merge(exports, {
             via: 'routes'
 		},
 
+        /*
+         * The Status of the Route
+         */
+        status: {
+            type: 'string',
+            enum: ['draft','published','trash']
+        },
+
 		/*
          * TODO, make route publishable at datetime
          */
@@ -113,7 +128,7 @@ _.merge(exports, {
 	
 	beforeValidate: [
 		function handleSlug(values, next){
-			sails.log.silly('Route.beforeValidate.handleSlug');
+			sails.log.verbose('Route.beforeValidate.handleSlug');
             if(values.title){
                 values.slug  = values.title.slug();
             }
@@ -123,7 +138,7 @@ _.merge(exports, {
 
     beforeCreate: [
         function handleSlug(values, next){
-            sails.log.silly('Route.beforeCreate.handleSlug');
+            sails.log.verbose('Route.beforeCreate.handleSlug');
             if(!values.slug){
                 return next(null, values);
             }
@@ -140,7 +155,7 @@ _.merge(exports, {
 
     beforeUpdate: [
         function handleSlug(values, next){
-            sails.log.silly('Route.beforeUpdate.handleSlug');
+            sails.log.verbose('Route.beforeUpdate.handleSlug');
             if(!values.slug){
                 return next(null, values);
             }
@@ -157,6 +172,7 @@ _.merge(exports, {
             sails.log.silly('Route.beforeUpdate.handleTrash');
             if(values.trash){
                values.trashAt = new Date();
+               values.status = 'trash';
             }
             next();
         }
