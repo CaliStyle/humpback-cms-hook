@@ -174,7 +174,7 @@ _.merge(exports, {
                values.trashAt = new Date();
                values.status = 'trash';
             }
-            next();
+            next(null, values);
         }
     ]
   

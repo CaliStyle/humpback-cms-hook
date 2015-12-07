@@ -79,7 +79,7 @@ module.exports = function (sails) {
     },
 		initialize: function (next) {
 			var err, eventsToWaitFor = [];
-      
+
       //wait for orm hook to be loaded
       if (sails.hooks.orm) {
         eventsToWaitFor.push('hook:orm:loaded');
@@ -87,7 +87,7 @@ module.exports = function (sails) {
         err = new Error();
         err.code = 'E_HOOK_INITIALIZE';
         err.name = 'Humpback Hook Error';
-        err.message = 'The "humpback" hook depends on the "orm" hook- cannot load the "humpback" hook without it!';
+        err.message = 'The "humpback" hook depends on the "orm" hook- cannot load the "humpback-cms" hook without it!';
         return next(err);
       }
 
@@ -98,7 +98,7 @@ module.exports = function (sails) {
         err = new Error();
         err.code = 'E_HOOK_INITIALIZE';
         err.name = 'Humpback Hook Error';
-        err.message = 'The "humpback" hook depends on the "pubsub" hook- cannot load the "humpback" hook without it!';
+        err.message = 'The "humpback" hook depends on the "pubsub" hook- cannot load the "humpback-cms" hook without it!';
         return next(err);
       }
 
@@ -117,9 +117,8 @@ module.exports = function (sails) {
           }
           return next(err);
         }
-        // It's very important to trigger this callback method when you are finished
-  		  // with the bootstrap!  (otherwise your server will never lift, since it's waiting on the bootstrap)
-  		  sails.emit('hook:humpback:cms:loaded');
+
+        sails.emit('hook:humpback:cms:loaded');
         next();
       });
           
@@ -130,8 +129,8 @@ module.exports = function (sails) {
      * They occur before Blueprints and Custom Routes
      */
     routes: {
-      before: {
-        'get /*': [
+      after: {
+        'before /*': [
           function cms (req, res, next){
             res.locals.meta = {};
             //If this request is a socket request then we can igonore it and let the route policy handle it.
@@ -187,6 +186,9 @@ module.exports = function (sails) {
                   res.locals.meta.keywords = keywords;
                 }
 
+                return next();
+                //Hopefully someday
+                /*
                 if(req.options.routeUnlocked){
                   //Assume that this is handled by Model Permissions
                   //Or that this route is public;
@@ -211,6 +213,7 @@ module.exports = function (sails) {
                     }
                     next();
                   });
+                */
               });
           }
         ]
