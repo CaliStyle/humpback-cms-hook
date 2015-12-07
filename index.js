@@ -130,7 +130,7 @@ module.exports = function (sails) {
      */
     routes: {
       after: {
-        'before /*': [
+        'before /get': [
           function cms (req, res, next){
             res.locals.meta = {};
             //If this request is a socket request then we can igonore it and let the route policy handle it.
