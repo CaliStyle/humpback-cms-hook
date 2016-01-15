@@ -53,8 +53,7 @@ _.merge(exports, {
          */
         slug: {
             type: 'string',
-            unique: true,
-            index: true
+            unique: true
         },
         
         /**
@@ -83,7 +82,7 @@ _.merge(exports, {
          * optional content for this route
          */
         content: {
-            type: 'string'
+            type: 'text'
         },
 
         /**

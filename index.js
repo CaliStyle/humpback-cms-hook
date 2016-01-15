@@ -186,6 +186,13 @@ module.exports = function (sails) {
                   res.locals.meta.keywords = keywords;
                 }
 
+                if(!req.route.content){
+                  sails.log.verbose(req.routeId, req.method.toLowerCase(), req.url, 'does not yet have content, use the CMS to add it');  
+                  res.locals.content = '';
+                }else{
+                  res.locals.content = req.route.content;
+                }
+
                 return next();
                 //Hopefully someday
                 /*
