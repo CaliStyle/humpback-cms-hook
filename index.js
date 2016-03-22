@@ -41,6 +41,7 @@ function _isRest(url){
 module.exports = function (sails) {
  	return { 
  		defaults: {
+      /*
       routes: {
         'get /admin/cms': {
           view: 'admin/index',
@@ -51,6 +52,7 @@ module.exports = function (sails) {
           defaultPermissions: ['admin']
         }
       }
+      */
     },
 
 		configure: function () {
