@@ -37,9 +37,7 @@
   ],
   "dependencies": {
     "bcryptjs": "^2.1",
-    "bluebird": "^2.9.30",
-    "sails": "^0.11.0",
-    "sails-disk": "^0.10.7"
+    "bluebird": "^2.9.30"
   },
   "devDependencies": {
     "chai": "^2.0.0",
@@ -51,6 +49,8 @@
     "jshint-stylish": "^1.0.1",
     "lodash": ">2.4.0",
     "mocha": "^2.1.0",
+    "sails": "^0.11.0",
+    "sails-disk": "^0.10.7",
     "socket.io-client": "^1.3.5",
     "supertest": "^1.0.1"
   },
